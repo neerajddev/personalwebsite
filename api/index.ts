@@ -20,27 +20,53 @@ app.use((req, res, next) => {
 
 import path from "path";
 import { fileURLToPath } from "url";
-const __dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Serve static frontend (Vite build output)
-app.use(express.static(path.join(__dirname, "../dist")));
+// Robust frontend output directory detection
+const possibleFrontendDirs = [
+	path.join(__dirname, "../dist"),
+	path.join(__dirname, "../build"),
+	path.join(__dirname, "../public")
+];
+let frontendPath = possibleFrontendDirs.find((dir) => {
+	try {
+		return require("fs").existsSync(path.join(dir, "index.html"));
+	} catch {
+		return false;
+	}
+});
+if (!frontendPath) frontendPath = path.join(__dirname, "../dist");
 
-// Root GET / route for diagnostics
+console.log({ __dirname, cwd: process.cwd(), frontendPath });
+
+// Serve static frontend
+app.use(express.static(frontendPath));
+
+// API router placeholder (all /api/* routes are handled below as before)
+// (No need for app.use("/api", ...) since all API routes are in this file)
+
+// Homepage route: serve index.html if exists, else fallback message
 app.get("/", (req, res) => {
-	return res.status(200).send(`
-		<html>
-			<body style="font-family:sans-serif;padding:40px">
-				<h1>API Running 🚀</h1>
-				<p>Deployment successful.</p>
-			</body>
-		</html>
-	`);
+	const indexPath = path.join(frontendPath, "index.html");
+	try {
+		if (require("fs").existsSync(indexPath)) {
+			return res.sendFile(indexPath);
+		}
+	} catch {}
+	return res.send("<h1>Website deployed successfully</h1>");
 });
 
 // SPA fallback for React Router (serves index.html for all non-API, non-static routes)
 app.get("*", (req, res, next) => {
 	if (req.path.startsWith("/api/")) return next();
-	res.sendFile(path.join(__dirname, "../dist", "index.html"));
+	const indexPath = path.join(frontendPath, "index.html");
+	try {
+		if (require("fs").existsSync(indexPath)) {
+			return res.sendFile(indexPath);
+		}
+	} catch {}
+	return res.status(404).send("Not found");
 });
 
 // Body parsers
