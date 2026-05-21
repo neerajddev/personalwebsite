@@ -15,11 +15,12 @@ app.use(express.json());
 let aiInstance: any = null;
 function getAi() {
   if (!aiInstance) {
-    const apiKey = process.env.GEMINI_API_KEY;
+    let apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       throw new Error("GEMINI_API_KEY is missing.");
     }
-    // Initialize using the production-stable serverless constructor format
+    // Sanitize the key to remove invisible characters
+    apiKey = apiKey.trim().replace(/[\r\n]/g, "");
     aiInstance = new GoogleGenAI(apiKey);
   }
   return aiInstance;
@@ -276,18 +277,21 @@ app.post("/api/chat", async (req, res) => {
     try {
       const ai = getAi();
       const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
-      // Compose the prompt as a single string with context and message history
       let prompt = `Here is the comprehensive portfolio context of Neeraj D Dev to base your responses on:\n${NEERAJ_PORTFOLIO_CONTEXT}\n\n`;
       messages.forEach((msg: { role: string; content: string }) => {
         prompt += `${msg.role === "user" ? "Visitor" : "AI Assistant"}: ${msg.content}\n`;
       });
       prompt += "AI Assistant:";
-      const response = await model.generateContent({
-        contents: [{ parts: [{ text: prompt }] }],
-      });
-      modelText = response.response.text() || "";
+      try {
+        const response = await model.generateContent({
+          contents: [{ parts: [{ text: prompt }] }],
+        });
+        modelText = response.response.text() || "";
+      } catch (apiError) {
+        console.error("DETAILED RUNTIME ENGINE EXCEPTION (chat):", apiError);
+        throw apiError;
+      }
     } catch (apiError: any) {
-      console.warn("Gemini API call crashed or returned 429 quota block. Activating rule fallback system...", apiError);
       modelText = runFallbackChatEngine(messages);
     }
 
@@ -333,12 +337,16 @@ app.post("/api/analyse", async (req, res) => {
     SUGGESTED ANGLE:
     [One concise paragraph on how Neeraj should position himself, highlighting his unique hybrid operational management + AI builder background to offset any potential gaps]
     `;
-      const response = await model.generateContent({
-        contents: [{ parts: [{ text: prompt }] }],
-      });
-      analysisText = response.response.text() || "";
+      try {
+        const response = await model.generateContent({
+          contents: [{ parts: [{ text: prompt }] }],
+        });
+        analysisText = response.response.text() || "";
+      } catch (apiError) {
+        console.error("DETAILED RUNTIME ENGINE EXCEPTION (analyse):", apiError);
+        throw apiError;
+      }
     } catch (apiError: any) {
-      console.warn("Gemini API call failed for fit analyser. Activating local match evaluator...", apiError);
       analysisText = runFallbackAnalyseEngine(jd);
     }
 
