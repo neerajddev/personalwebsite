@@ -9,13 +9,38 @@ dotenv.config();
 
 const app = express();
 
-// Global request logging middleware
+// Global request logging middleware and diagnostics
 app.use((req, res, next) => {
 	console.log("START", req.method, req.url);
 	res.on("finish", () => {
 		console.log("DONE", req.method, req.url, res.statusCode);
 	});
 	next();
+});
+
+import path from "path";
+import { fileURLToPath } from "url";
+const __dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+
+// Serve static frontend (Vite build output)
+app.use(express.static(path.join(__dirname, "../dist")));
+
+// Root GET / route for diagnostics
+app.get("/", (req, res) => {
+	return res.status(200).send(`
+		<html>
+			<body style="font-family:sans-serif;padding:40px">
+				<h1>API Running 🚀</h1>
+				<p>Deployment successful.</p>
+			</body>
+		</html>
+	`);
+});
+
+// SPA fallback for React Router (serves index.html for all non-API, non-static routes)
+app.get("*", (req, res, next) => {
+	if (req.path.startsWith("/api/")) return next();
+	res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
 
 // Body parsers
