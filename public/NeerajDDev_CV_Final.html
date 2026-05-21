@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neeraj D Dev — Head of Operations & Program Manager Resume</title>
+  
+  <!-- Font Imports from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind & Custom Styling Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Premium print-specific optimizations */
+    @media print {
+      html, body {
+        background-color: #ffffff !important;
+        color: #111827 !important;
+        font-size: 13.5px !important;
+        line-height: 1.5 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      @page {
+        size: A4;
+        margin: 1.4cm 1.4cm 1.4cm 1.4cm; /* elegant margins for multi-page documents */
+      }
+      body {
+        padding: 0 !important;
+      }
+      main {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        width: 100% !important;
+      }
+      a {
+        text-decoration: none !important;
+        color: #111827 !important;
+      }
+      .page-break {
+        display: block;
+        page-break-before: always !important;
+        break-before: page !important;
+        height: 0;
+        margin: 0;
+        border: none;
+      }
+      /* Compact styling slightly for a clean 2-page fit */
+      header.border-b-2 {
+        padding-bottom: 1.2rem !important;
+        margin-bottom: 1.2rem !important;
+      }
+      section {
+        margin-bottom: 1.5rem !important;
+      }
+    }
+
+    /* Selection Colors */
+    ::selection {
+      background-color: rgba(59, 130, 246, 0.15);
+      color: #111827;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-[#111827] font-sans antialiased min-h-screen flex flex-col justify-start pb-16 print:bg-white print:p-0">
+
+  <!-- Interactive Utility Header (Hides on print) -->
+  <header class="no-print bg-[#111827] border-b border-slate-800 text-slate-300 py-3.5 px-6 shadow-sm sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <a href="/" class="group flex items-center text-xs font-medium tracking-wide uppercase hover:text-white transition-colors">
+          <svg class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Portfolio
+        </a>
+      </div>
+      
+      <div class="flex items-center gap-3">
+        <button onclick="window.print()" class="bg-[#3b82f6] hover:bg-blue-600 active:bg-blue-700 text-white font-semibold text-xs tracking-wider uppercase px-4.5 py-2 rounded shadow-md transition-all duration-200 cursor-pointer flex items-center">
+          <svg class="w-3.5 h-3.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-3a2 2 0 00-2-2H9a2 2 0 00-2 2v3a2 2 0 002 2zm5-17v4m0 0v1m0-1L9 9m3 3l3-3" />
+          </svg>
+          Print / Save PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Resume Main Document Container -->
+  <main class="max-w-4xl w-full mx-auto p-6 sm:p-12 md:p-14 bg-white mt-6 print:mt-0 print:p-0 rounded-xl border border-slate-200 print:border-none shadow-xl print:shadow-none transition-shadow duration-300">
+    
+    <!-- Primary Resume Header Section -->
+    <header class="border-b-2 border-slate-100 pb-8 mb-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-5">
+        <div>
+          <!-- Name and Visual Branded Suffix -->
+          <h1 class="font-display font-extrabold text-4xl tracking-tight text-[#111827] md:text-5xl">
+            Neeraj D Dev
+          </h1>
+          <p class="font-display font-bold text-lg text-[#3b82f6] tracking-wide mt-2 uppercase">
+            Head of Operations | Program Manager | Project Manager
+          </p>
+        </div>
+        
+        <!-- Contact & Location Metadata -->
+        <div class="space-y-1.5 text-slate-600 text-right md:-mb-1 md:text-right font-sans text-xs md:text-sm self-stretch md:self-auto border-t md:border-t-0 pt-4 md:pt-0 border-slate-100">
+          <div class="flex items-center md:justify-end gap-2 text-[#111827]">
+            <svg class="w-3.5 h-3.5 text-[#3b82f6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L22 8m-2 11a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h12a2 2 0 012 2v11z"/>
+            </svg>
+            <a href="mailto:neerajddev.pillai@gmail.com" class="hover:text-[#3b82f6] hover:underline transition-colors">neerajddev.pillai@gmail.com</a>
+          </div>
+          <div class="flex items-center md:justify-end gap-2 text-[#111827]">
+            <svg class="w-3.5 h-3.5 text-[#3b82f6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 00.906.671h1.591a1 1 0 00.906-.671l.548-2.2a1 1 0 01.94-.725H19a2 2 0 012 2v3a2 2 0 01-2 2h-2.28a1 1 0 00-.94.725l-.548 2.2a1 1 0 00-.906.671h-1.59a1 1 0 00-.906-.671l-.548-2.2a1 1 0 01-.94-.725H5a2 2 0 01-2-2V5z"/>
+            </svg>
+            <a href="tel:+918129620652" class="hover:text-[#3b82f6] whitespace-nowrap transition-colors">+91 812 962 0652</a>
+          </div>
+          <div class="flex items-center md:justify-end gap-2 text-[#111827]">
+            <svg class="w-3.5 h-3.5 text-[#3b82f6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span>Bangalore, India</span>
+          </div>
+          <div class="flex items-center md:justify-end gap-2 text-[#111827] pt-0.5">
+            <svg class="w-3.5 h-3.5 text-[#3b82f6]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <a href="https://linkedin.com/in/neeraj-d-dev-b2091b159" target="_blank" class="hover:text-[#3b82f6] hover:underline transition-colors font-medium">linkedin.com/in/neeraj-d-dev-b2091b159</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <section class="mb-9 page-break-avoid">
+      <div class="flex items-center gap-3 mb-3">
+        <h2 class="font-display font-extrabold text-xs tracking-widest uppercase text-[#3b82f6]">
+          Professional Summary
+        </h2>
+        <div class="flex-grow h-[1px] bg-slate-100"></div>
+      </div>
+      <p class="text-slate-700 leading-relaxed text-sm font-light">
+        Results-driven Head of Operations and Program Manager with 7+ years of experience scaling B2B service delivery, executing high-value infrastructure projects, and driving digital workflow automation. Proven track record of managing 1,000+ projects across 150+ client accounts, directing cross-functional remote teams, and delivering Rs. 3.5L monthly revenue at peak. Adept at bridging operational execution with technical systems - independently building SaaS platforms, automating workflows, and managing full P&L without external support.
+      </p>
+    </section>
+
+    <!-- Core Competencies -->
+    <section class="mb-9 page-break-avoid">
+      <div class="flex items-center gap-3 mb-4">
+        <h2 class="font-display font-extrabold text-xs tracking-widest uppercase text-[#3b82f6]">
+          Core Competencies & Tools
+        </h2>
+        <div class="flex-grow h-[1px] bg-slate-100"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-slate-50/50 rounded-lg p-4 border border-slate-100/80">
+          <h3 class="font-display font-bold text-sm text-[#111827] mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#3b82f6]"></span>
+            Operations & Program Delivery
+          </h3>
+          <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+            End-to-End Program Management, Portfolio Management, SLA & KPI Ownership, P&L Management, SOP & Playbook Development, Risk Mitigation, Process Optimisation, Last-Mile Operations.
+          </p>
+        </div>
+        
+        <div class="bg-slate-50/50 rounded-lg p-4 border border-slate-100/80">
+          <h3 class="font-display font-bold text-sm text-[#111827] mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#3b82f6]"></span>
+            Project & Construction Management
+          </h3>
+          <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+            Milestone Tracking, Resource Allocation, Stakeholder Management, Budgeting, Cross-functional Coordination, Vendor Management, Client Escalation Management.
+          </p>
+        </div>
+
+        <div class="bg-slate-50/50 rounded-lg p-4 border border-slate-100/80 col-span-1 md:col-span-2">
+          <h3 class="font-display font-bold text-sm text-[#111827] mb-2 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#3b82f6]"></span>
+            Tools, Technology & Languages
+          </h3>
+          <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+            <strong class="text-slate-700">Digital Stack:</strong> Google Workspace, AppSheet, Supabase, Vercel, GitHub Copilot, Cloudinary, Generative AI Workflows, API Integrations, Database Management. <br class="mt-1">
+            <strong class="text-slate-700">Languages:</strong> English (Professional), Malayalam (Native), Hindi (Intermediate), Tamil (Intermediate).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section class="mb-9">
+      <div class="flex items-center gap-3 mb-5">
+        <h2 class="font-display font-extrabold text-xs tracking-widest uppercase text-[#3b82f6]">
+          Professional Experience
+        </h2>
+        <div class="flex-grow h-[1px] bg-slate-100"></div>
+      </div>
+
+      <div class="space-y-8">
+        <!-- Role 1 -->
+        <article class="relative pl-5 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-0.5 before:bg-slate-100/80">
+          <span class="absolute left-[-3px] top-[7px] w-2 h-2 rounded-full border-2 border-[#3b82f6] bg-white"></span>
+          
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+            <div>
+              <h3 class="font-display font-bold text-base text-[#111827] sm:text-lg">
+                Head of Operations & Program Delivery
+              </h3>
+              <p class="font-display font-medium text-xs sm:text-sm text-[#3b82f6]">
+                De'Artisa LLP, Bangalore, India
+              </p>
+            </div>
+            <div class="flex items-center gap-1.5 text-slate-500 font-mono text-xs sm:text-sm">
+              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <span>Nov 2021 &mdash; Present</span>
+            </div>
+          </div>
+
+          <ul class="space-y-2 text-slate-700 font-light text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Directed end-to-end B2B service delivery programs across 150+ client accounts including Livspace, successfully managing 1,000+ projects over the engagement period with a distributed remote team.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Architected and implemented automated operational workflows using Google Workspace and low-code tools reducing administrative overhead by 30% and improving SLA compliance across all active accounts.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Managed full program P&L including SKU-based pricing, freelancer contracts, vendor payments, and margin optimisation delivering Rs. 3.5L monthly revenue at peak.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Built and led a cross-functional remote team of freelancers and coordinators; handled end-to-end hiring, onboarding, performance management, and vendor offboarding independently.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Owned senior stakeholder communication and high-stakes client escalation management, consistently converting critical situations into long-term account retention and expanded scope.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Independently architected and deployed a B2B SaaS platform (Design&Cart) - building vendor onboarding, billing systems, and operational support workflows using Supabase, Vercel, and GitHub Copilot with zero external engineering support.</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Role 2 -->
+        <article class="relative pl-5 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-0.5 before:bg-slate-100/80">
+          <span class="absolute left-[-3px] top-[7px] w-2 h-2 rounded-full border-2 border-slate-300 bg-white"></span>
+          
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+            <div>
+              <h3 class="font-display font-bold text-base text-[#111827] sm:text-lg">
+                Senior Project Manager
+              </h3>
+              <p class="font-display font-medium text-xs sm:text-sm text-[#3b82f6]">
+                ULCCS Ltd, Ernakulam & Alappuzha, Kerala
+              </p>
+            </div>
+            <div class="flex items-center gap-1.5 text-slate-500 font-mono text-xs sm:text-sm">
+              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <span>Mar 2019 &mdash; Aug 2021</span>
+            </div>
+          </div>
+
+          <ul class="space-y-2 text-slate-700 font-light text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Led end-to-end execution of a Rs. 75 Cr, 12-storey infrastructure project coordinating a daily workforce of 100+ personnel across 7 specialised subcontractors and multiple concurrent work fronts.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Oversaw a concurrent portfolio of 5 sub-projects valued at Rs. 12-15 Cr combined, acting as central Program Manager to optimise cross-site labour distribution and resource reallocation.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Engineered sector-wise cost-tracking systems and daily measurement verification protocols achieving zero cost overruns across all project sites throughout the engagement.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Aligned enterprise clients, government regulatory bodies, and external contractors to deliver all phase milestones strictly on schedule with full documentation compliance.</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Page Break for A4 PDF -->
+        <div class="page-break"></div>
+
+        <!-- Role 3 -->
+        <article class="relative pl-5 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-0.5 before:bg-slate-100/80">
+          <span class="absolute left-[-3px] top-[7px] w-2 h-2 rounded-full border-2 border-slate-300 bg-white"></span>
+          
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+            <div>
+              <h3 class="font-display font-bold text-base text-[#111827] sm:text-lg">
+                Site Engineer
+              </h3>
+              <p class="font-display font-medium text-xs sm:text-sm text-[#3b82f6]">
+                Melange Homes, Kerala
+              </p>
+            </div>
+            <div class="flex items-center gap-1.5 text-slate-500 font-mono text-xs sm:text-sm">
+              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <span>Jan 2017 &mdash; Jan 2018</span>
+            </div>
+          </div>
+
+          <ul class="space-y-2 text-slate-700 font-light text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Supervised residential construction activities including daily site operations, subcontractor scheduling, material procurement, and quality verification.</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Role 4 -->
+        <article class="relative pl-5">
+          <span class="absolute left-[-3px] top-[7px] w-2 h-2 rounded-full border-2 border-slate-300 bg-white"></span>
+          
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+            <div>
+              <h3 class="font-display font-bold text-base text-[#111827] sm:text-lg">
+                Site Engineer
+              </h3>
+              <p class="font-display font-medium text-xs sm:text-sm text-[#3b82f6]">
+                Government Corporation Contractor, Kerala
+              </p>
+            </div>
+            <div class="flex items-center gap-1.5 text-slate-500 font-mono text-xs sm:text-sm">
+              <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <span>Feb 2018 &mdash; Sep 2018</span>
+            </div>
+          </div>
+
+          <ul class="space-y-2 text-slate-700 font-light text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-2">
+              <span class="text-[#3b82f6] shrink-0 mt-1">&bull;</span>
+              <span>Managed on-site civil works execution and subcontractor coordination for government infrastructure projects across multiple locations.</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Key Projects -->
+    <section class="mb-9 page-break-avoid">
+      <div class="flex items-center gap-3 mb-5">
+        <h2 class="font-display font-extrabold text-xs tracking-widest uppercase text-[#3b82f6]">
+          Key Technology Projects
+        </h2>
+        <div class="flex-grow h-[1px] bg-slate-100"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-slate-50/30 p-5 rounded-lg border border-slate-100/90 shadow-sm">
+          <h3 class="font-display font-bold text-[#111827] text-sm sm:text-base mb-1.5">
+            Design&Cart B2B SaaS Platform
+          </h3>
+          <p class="text-slate-500 font-mono text-[10px] mb-2">SUPABASE | VERCEL | NEXT.JS</p>
+          <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+            Led zero-to-one technical implementation and operational setup for designer-vendor escrow marketplace using Supabase database models, authentication, and secure billing pipelines with zero external dev assistance.
+          </p>
+        </div>
+
+        <div class="bg-slate-50/30 p-5 rounded-lg border border-slate-100/90 shadow-sm">
+          <h3 class="font-display font-bold text-[#111827] text-sm sm:text-base mb-1.5">
+            Growth Tracker Progressive Web App
+          </h3>
+          <p class="text-slate-500 font-mono text-[10px] mb-2">VANILLA JS | SERVICE WORKERS | LOCAL STORAGE</p>
+          <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+            Built an offline-capable progressive web application for tracking analytical tasks, priorities, and custom business mathematics with cloud synchronisation capabilities.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="mb-5 page-break-avoid">
+      <div class="flex items-center gap-3 mb-4">
+        <h2 class="font-display font-extrabold text-xs tracking-widest uppercase text-[#3b82f6]">
+          Education
+        </h2>
+        <div class="flex-grow h-[1px] bg-slate-100"></div>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-slate-50/50 p-4 rounded-lg border border-slate-100">
+          <div class="flex justify-between items-start mb-1">
+            <h3 class="font-display font-bold text-sm text-[#111827]">
+              Graduation Ship Program
+            </h3>
+            <span class="font-mono text-[11px] text-slate-500 shrink-0">Oct 2018 - Mar 2019</span>
+          </div>
+          <p class="text-xs text-slate-600 font-medium">NSDC / IIIC Kerala</p>
+        </div>
+
+        <div class="bg-slate-50/50 p-4 rounded-lg border border-slate-100">
+          <div class="flex justify-between items-start mb-1">
+            <h3 class="font-display font-bold text-sm text-[#111827]">
+              B.Tech, Civil Engineering
+            </h3>
+            <span class="font-mono text-[11px] text-slate-500 shrink-0">Aug 2012 - May 2016</span>
+          </div>
+          <p class="text-xs text-slate-600 font-medium">University of Kerala</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Footer -->
+    <footer class="mt-12 pt-5 border-t border-slate-100 flex justify-between items-center text-[10px] sm:text-xs font-mono text-slate-400">
+      <span>Neeraj D Dev &mdash; Portfolio Master CV</span>
+      <span>Operations & Program Delivery Excellence</span>
+    </footer>
+  </main>
+
+</body>
+</html>
