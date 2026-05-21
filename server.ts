@@ -1,7 +1,6 @@
 import express from "express";
 import path from "path";
 import dotenv from "dotenv";
-import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import { createClient } from "@supabase/supabase-js";
 
@@ -124,6 +123,16 @@ function runFallbackChatEngine(messages: { role: string; content: string }[]): s
   const lastMsg = messages[messages.length - 1];
   const lastContent = lastMsg?.content || "";
   const text = lastContent.toLowerCase().trim();
+
+  // 0. Conversational Introductions & Basic Greetings Fallback (Prevents matching other email/contact text rules)
+  const basicGreetings = ["hi", "hello", "hey", "greetings", "how are you", "good morning", "good afternoon", "good evening", "how's it going", "howdy", "whats up", "what's up", "wassup", "sup"];
+  const isGreetingMatch = basicGreetings.some(g => {
+    return text === g || text.startsWith(g + " ") || text.startsWith(g + ",") || text.startsWith(g + "!");
+  });
+
+  if (isGreetingMatch) {
+    return "Hello! I am Neeraj's AI Representative, here as his external brain. Neeraj is a 0 to 1 Builder and AI-Native Operator with over 9 years of cross-functional experience across civil infrastructure, scale operations (supporting 150+ B2B designer studios), and hands-on SaaS engineering (shipped 2 live platforms). What aspect of Neeraj's experience, software products, or operational philosophy can I share with you today?";
+  }
 
   // 1. Direct Affirmations
   const positiveAffirmations = ["yes", "sure", "okay", "ok", "i do", "yeah", "yup", "please", "agree", "y ", "y\n", "of course", "correct", "perfect"];
@@ -687,6 +696,7 @@ app.put("/api/contacts/:id/status", async (req, res) => {
 async function startServer() {
 
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
