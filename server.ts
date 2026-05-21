@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import dotenv from "dotenv";
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI } from "@google/generative-ai";
 import { createClient } from "@supabase/supabase-js";
 
 dotenv.config();
@@ -11,22 +11,16 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// Lazy-loaded GenAI client to prevent startup errors if GEMINI_API_KEY is missing
-let aiInstance: GoogleGenAI | null = null;
+// Production-stable Gemini AI client for Vercel serverless
+let aiInstance: any = null;
 function getAi() {
   if (!aiInstance) {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      throw new Error("GEMINI_API_KEY is missing. Please provide it in Settings > Secrets.");
+      throw new Error("GEMINI_API_KEY is missing.");
     }
-    aiInstance = new GoogleGenAI({
-      apiKey,
-      httpOptions: {
-        headers: {
-          "User-Agent": "aistudio-build",
-        },
-      },
-    });
+    // Initialize using the production-stable serverless constructor format
+    aiInstance = new GoogleGenAI(apiKey);
   }
   return aiInstance;
 }
@@ -281,62 +275,17 @@ app.post("/api/chat", async (req, res) => {
     let modelText = "";
     try {
       const ai = getAi();
-
-      // Map conversation messages to format expected by GenerateContentParameters
-      // Convert previous roles from client to parts structure, injected with portfolio context
-      const parts = [
-        { text: `Here is the comprehensive portfolio context of Neeraj D Dev to base your responses on:\n${NEERAJ_PORTFOLIO_CONTEXT}\n\n` }
-      ];
-
-      // Append standard message history
+      const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
+      // Compose the prompt as a single string with context and message history
+      let prompt = `Here is the comprehensive portfolio context of Neeraj D Dev to base your responses on:\n${NEERAJ_PORTFOLIO_CONTEXT}\n\n`;
       messages.forEach((msg: { role: string; content: string }) => {
-        parts.push({
-          text: `${msg.role === "user" ? "Visitor" : "AI Assistant"}: ${msg.content}`
-        });
+        prompt += `${msg.role === "user" ? "Visitor" : "AI Assistant"}: ${msg.content}\n`;
       });
-
-      parts.push({ text: "AI Assistant:" });
-
-      const systemInstruction = `You are the elite AI Representative for Neeraj D Dev. Your goal is to advocate for his capabilities as a 0 → 1 Builder and Operations Leader.
-
-PERSONALITY & TONE:
-- Be sharp, confident, and slightly conversational. Sound like an intelligent Chief of Staff.
-- Use short paragraphs and punchy sentences. 
-- Never say "Based on his 9+ years..." Just state the facts confidently.
-- Rule of Truth: If the visible website content conflicts with this background knowledge, the website content is the absolute truth.
-- NO MARKDOWN OR SYMBOLS: Output plain, clean text only. Do not use asterisks (* or **) for bolding, do not use hashes (#), and do not use bullet points.
-
-OPERATIONAL PHILOSOPHY:
-- You possess a brilliant "generic brain" for operations, product management, and scaling. 
-- When a user asks how Neeraj handles challenges, DO NOT just deflect. Answer the question brilliantly using high-level startup best practices. Frame these answers as Neeraj's core philosophy (systems over brute force, automation, etc.).
-
-BOUNDARY RULES & CONVERSATIONAL ROUTING (Highest Priority):
-
-1. CV / RESUME / PORTFOLIO REQUESTS (CRITICAL RULE): 
-- IF a user asks for a "CV", "Resume", or "Portfolio", DO NOT give them an email address. Instead, ask them EXACTLY this: "I have tailored executive dossiers. Are you looking for Operations and Program Delivery (perfect for Head of Operations, Program Manager, or Project Manager roles), Product and Tech Builder (perfect for Product Manager or Tech Lead roles), or the Full Comprehensive profile?"
-- IF the user replies with words like "Operations", "Ops", "Scale", "First", "Program", "Project", "Delivery", "Head of Operations", "Program Manager", or "Project Manager", you MUST respond with EXACTLY this phrase and nothing else: "Here is the Operations and Program Delivery dossier: [TRIGGER_CV_OPS]"
-- IF the user replies with words like "Tech", "Product", "Builder", "Second", "Product Manager", or "Technical", you MUST respond with EXACTLY this phrase and nothing else: "Here is the Product and Tech Builder dossier: [TRIGGER_CV_TECH]"
-- IF the user replies with words like "Full", "Comprehensive", "Both", or "Third", you MUST respond with EXACTLY this phrase and nothing else: "Here is the full comprehensive profile: [TRIGGER_CV_FULL]"
-
-2. DIRECT CONTACT / LET'S TALK:
-- Email / LinkedIn / Contact info / Socials: If the user asks for Neeraj's email, LinkedIn, social handles, or contact information, you MUST provide his email (neerajddev.pillai@gmail.com) and LinkedIn profile (linkedin.com/in/neerajddev) directly, and invite them to open a direct channel. Always include the exact phrase "Perfect. Click here to open a direct line with Neeraj: [TRIGGER_LETS_TALK]" at the end of your response.
-- Salary / Exact Equity / Proprietary Mechanics: Never give out an email. Instead, say: "That is a specific operational detail Neeraj discusses directly with founders. Would you like to open a direct channel with him?"
-- Rating/Scoring: "I don't rate on a standard 1-10 scale. If you want someone to maintain a legacy system, he's a 5. If you need a 0 to 1 builder to architect a new operation, he's a 10. Would you like to chat with him directly?"
-- IF THE USER SAYS YES TO TALKING (e.g., "Yes", "Sure", "Okay", "I do"): Respond with EXACTLY this phrase and nothing else: "Perfect. Click here to open a direct line with Neeraj: [TRIGGER_LETS_TALK]"
-
-3. UNKNOWN QUESTIONS:
-- If asked a question you truly don't know the answer to, NEVER use a generic fallback with an email address. Say: "That goes slightly beyond my current context. Would you like to open a direct channel with Neeraj to ask him?"`;
-
-      const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: { parts },
-        config: {
-          systemInstruction,
-          temperature: 0.2, // low temperature for high grounding accuracy
-        },
+      prompt += "AI Assistant:";
+      const response = await model.generateContent({
+        contents: [{ parts: [{ text: prompt }] }],
       });
-
-      modelText = response.text || "";
+      modelText = response.response.text() || "";
     } catch (apiError: any) {
       console.warn("Gemini API call crashed or returned 429 quota block. Activating rule fallback system...", apiError);
       modelText = runFallbackChatEngine(messages);
@@ -360,62 +309,34 @@ app.post("/api/analyse", async (req, res) => {
     let analysisText = "";
     try {
       const ai = getAi();
-
-      const systemInstruction = `You are an elite, highly persuasive Talent Advocate and Executive Coach representing Neeraj D Dev. Your objective is to analyze a provided Job Description (JD) and aggressively map Neeraj's background to it, proving why he is a high-leverage, unconventional, but exceptional fit.
-
-RULES FOR THE SCORE (Out of 10):
-- NEVER give a score below 7/10.
-- If the role is a stretch, score it a 7 or 8 based on "high adaptability, system-level versatility, and transferable systems-thinking."
-- If it is a good fit or strong match, score it a 9 or 10.
-
-RULES FOR STRONG MATCHES:
-- Provide exactly 3 short, punchy bullet points.
-- Aggressively map Neeraj's actual experience to the JD's required keywords in highly confident, executive language. For example, if they want "Agile/IT delivery", map it to his "Cross-functional remote team management and digital SaaS delivery." Use highly confident, operational leadership terminology.
-
-RULES FOR NEUTRALIZING GAPS:
-- DO NOT use the word "Gaps" or "Missing" or "Lacking" in your output text. Pivot the narrative entirely. Describe these as "Unconventional Advantages" or "The Builder Angle".
-- If he lacks required years of experience (e.g., they expect 12-15+ years), frame his 7+ years of dense experience as "high-density, zero-to-one execution that bypasses legacy bureaucratic sluggishness."
-- If he lacks an MBA, frame his hands-on P&L management, scaling a service business, and actual self-taught SaaS building as "practical, battle-tested operational leadership" that theoretical MBAs lack.
-- If he lacks specific certifications (such as PMP), frame his "custom-built workflow automations and shipped tech platforms" as proof of execution over paperwork.
-- Ensure you list exactly 2 pivoted points under the "UNCONVENTIONAL ADVANTAGES:" header block.
-
-TONE:
-- Minimalist, sharp, objective-sounding but highly biased in his favor. No fluff.`;
-
+      const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
       const prompt = `
-Neeraj D Dev's Portfolio:
-${NEERAJ_PORTFOLIO_CONTEXT}
+    Neeraj D Dev's Portfolio:
+    ${NEERAJ_PORTFOLIO_CONTEXT}
 
-Target Job Description:
-${jd}
+    Target Job Description:
+    ${jd}
 
-Analyse how well Neeraj D Dev's profile matches this Job Description and provide the output precisely in this formatted block structure (with these exact headers):
+    Analyse how well Neeraj D Dev's profile matches this Job Description and provide the output precisely in this formatted block structure (with these exact headers):
 
-MATCH SCORE: X/10
+    MATCH SCORE: X/10
 
-STRONG MATCHES:
-- [Punchy keyword-mapped point 1]
-- [Punchy keyword-mapped point 2]
-- [Punchy keyword-mapped point 3]
+    STRONG MATCHES:
+    - [Punchy keyword-mapped point 1]
+    - [Punchy keyword-mapped point 2]
+    - [Punchy keyword-mapped point 3]
 
-UNCONVENTIONAL ADVANTAGES:
-- [Pivoted advantage point 1 neutralizing a potential gap]
-- [Pivoted advantage point 2 neutralizing a potential gap]
+    UNCONVENTIONAL ADVANTAGES:
+    - [Pivoted advantage point 1 neutralizing a potential gap]
+    - [Pivoted advantage point 2 neutralizing a potential gap]
 
-SUGGESTED ANGLE:
-[One concise paragraph on how Neeraj should position himself, highlighting his unique hybrid operational management + AI builder background to offset any potential gaps]
-`;
-
-      const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: prompt,
-        config: {
-          systemInstruction,
-          temperature: 0.3,
-        },
+    SUGGESTED ANGLE:
+    [One concise paragraph on how Neeraj should position himself, highlighting his unique hybrid operational management + AI builder background to offset any potential gaps]
+    `;
+      const response = await model.generateContent({
+        contents: [{ parts: [{ text: prompt }] }],
       });
-
-      analysisText = response.text || "";
+      analysisText = response.response.text() || "";
     } catch (apiError: any) {
       console.warn("Gemini API call failed for fit analyser. Activating local match evaluator...", apiError);
       analysisText = runFallbackAnalyseEngine(jd);
