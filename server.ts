@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import dotenv from "dotenv";
-import { GoogleGenAI } from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { createClient } from "@supabase/supabase-js";
 
 dotenv.config();
@@ -21,7 +21,7 @@ function getAi() {
     }
     // Sanitize the key to remove invisible characters
     apiKey = apiKey.trim().replace(/[\r\n]/g, "");
-    aiInstance = new GoogleGenAI(apiKey);
+    aiInstance = new GoogleGenerativeAI(apiKey);
   }
   return aiInstance;
 }
