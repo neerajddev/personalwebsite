@@ -351,8 +351,9 @@ export default function App() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to get API response");
-      }
+  const errorText = await response.text();
+  throw new Error(errorText || "Failed to get API response");
+}
 
       const data = await response.json();
       setChatMessages((prev) => [
