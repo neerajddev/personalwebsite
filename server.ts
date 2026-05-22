@@ -5,6 +5,7 @@ import { GoogleGenAI } from "@google/genai";
 import { createClient } from "@supabase/supabase-js";
 
 dotenv.config();
+dotenv.config({ path: ".env.local" });
 
 const app = express();
 const PORT = 3000;
@@ -328,7 +329,7 @@ BOUNDARY RULES & CONVERSATIONAL ROUTING (Highest Priority):
 - If asked a question you truly don't know the answer to, NEVER use a generic fallback with an email address. Say: "That goes slightly beyond my current context. Would you like to open a direct channel with Neeraj to ask him?"`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+  model: "gemini-2.5-flash-lite",
         contents: { parts },
         config: {
           systemInstruction,
@@ -338,7 +339,11 @@ BOUNDARY RULES & CONVERSATIONAL ROUTING (Highest Priority):
 
       modelText = response.text || "";
     } catch (apiError: any) {
-      console.warn("Gemini API call crashed or returned 429 quota block. Activating rule fallback system...", apiError);
+      console.warn("Gemini API call failed. Activating rule fallback system...", {
+  message: apiError?.message,
+  status: apiError?.status,
+  cause: apiError?.cause,
+});
       modelText = runFallbackChatEngine(messages);
     }
 
@@ -407,7 +412,7 @@ SUGGESTED ANGLE:
 `;
 
       const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+  model: "gemini-2.5-flash-lite",
         contents: prompt,
         config: {
           systemInstruction,
@@ -417,7 +422,11 @@ SUGGESTED ANGLE:
 
       analysisText = response.text || "";
     } catch (apiError: any) {
-      console.warn("Gemini API call failed for fit analyser. Activating local match evaluator...", apiError);
+      console.warn("Gemini API call failed for fit analyser. Activating local match evaluator...", {
+  message: apiError?.message,
+  status: apiError?.status,
+  cause: apiError?.cause,
+});
       analysisText = runFallbackAnalyseEngine(jd);
     }
 
