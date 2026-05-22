@@ -374,7 +374,7 @@ app.post("/api/analyse", async (req, res) => {
     try {
       const ai = getAi();
 
-      const systemInstruction = `You are an elite, highly persuasive Talent Advocate and Executive Coach representing Neeraj D Dev. Your objective is to analyze a provided Job Description (JD) and aggressively map Neeraj's background to it, proving why he is a high-leverage, unconventional, but exceptional fit.
+      const systemInstruction = `You are an elite, highly persuasive Talent Advocate and Executive Coach representing Neeraj D Dev. Your objective is to analyze a provided role brief, founder mandate, operating challenge, investment thesis, or job description and aggressively map Neeraj's background to it, proving why he is a high-leverage, unconventional, but exceptional fit.
 
     RULES FOR THE SCORE (Out of 10):
     - NEVER give a score below 7/10.
@@ -399,13 +399,13 @@ app.post("/api/analyse", async (req, res) => {
     - Do not use Markdown formatting. Do not use asterisks, bold markers, headings with **, or bullet symbols other than simple hyphens. Output must be clean plain text only.`;
 
       const prompt = `
-Neeraj D Dev's Portfolio:
-${NEERAJ_PORTFOLIO_CONTEXT}
+    Neeraj D Dev's Portfolio:
+    ${NEERAJ_PORTFOLIO_CONTEXT}
 
-Target Job Description:
-${jd}
+    Target Context:
+    ${jd}
 
-Analyse how well Neeraj D Dev's profile matches this Job Description and provide the output precisely in this formatted block structure (with these exact headers):
+    Analyse how well Neeraj D Dev's profile matches this context and provide the output precisely in this formatted block structure (with these exact headers):
 
 MATCH SCORE: X/10
 

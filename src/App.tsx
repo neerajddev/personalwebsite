@@ -394,7 +394,7 @@ export default function App() {
       setAnalysisResult(data.text);
     } catch (err: any) {
       console.error(err);
-      setAnalysisError(err.message || "Something went wrong while matching your JD. Please try again.");
+      setAnalysisError(err.message || "Something went wrong while mapping the fit. Please try again.");
     } finally {
       setIsAnalysing(false);
     }
@@ -2449,7 +2449,7 @@ export default function App() {
  
               {/* Grid content */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-start text-left">
-                {/* Left Column: Brief and JD Input */}
+                {/* Left Column: Context Input */}
                 <div className="lg:col-span-5 space-y-4">
                   <div className="space-y-2.5">
                     <h3 className="text-lg sm:text-xl font-extrabold text-white uppercase tracking-tight mb-1 font-sans">
@@ -2461,7 +2461,7 @@ export default function App() {
                   </div>
  
                   <div className="bg-black/25 border border-white/5 rounded-2xl p-4 sm:p-5 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 font-mono text-[8px] text-[#f9fafb]/20 p-2 select-none pointer-events-none">JD_INPUT_STREAM</div>
+                    <div className="absolute top-0 right-0 font-mono text-[8px] text-[#f9fafb]/20 p-2 select-none pointer-events-none">CONTEXT_INPUT_STREAM</div>
                     
                     <label className="block text-[9px] sm:text-[10px] font-mono text-[#f9fafb]/50 tracking-wider uppercase mb-2">
                       PROJECT SCOPE OR MANDATE:
