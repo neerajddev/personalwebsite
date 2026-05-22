@@ -2525,10 +2525,10 @@ export default function App() {
                             <Cpu className="w-5 h-5 text-[#3db0ff] animate-spin" style={{ animationDuration: '4s' }} />
                           </div>
                           <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-white mb-2">
-                            Comparing Profile with JD
+                            Mapping Strategic Fit
                           </h4>
                           <p className="text-[10px] sm:text-[11px] text-[#f9fafb]/50 max-w-sm leading-relaxed px-2 font-light">
-                            Gemini AI is mapping Neeraj's 7+ years of operations, SaaS product deployments, and system architectures to your specifications...
+                            Gemini AI is mapping Neeraj's operations depth, SaaS execution, and systems-building track record against the context you provided...
                           </p>
                         </motion.div>
                       ) : analysisError ? (
@@ -2659,10 +2659,10 @@ export default function App() {
                             <FileText className="w-4 h-4" />
                           </div>
                           <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-[#f9fafb]/40 mb-1">
-                            Awaiting Specification
+                            Awaiting Context
                           </h4>
                           <p className="text-[10px] sm:text-[11px] text-slate-400 max-w-xs leading-normal font-sans font-light">
-                            Submit any job description in the left-hand editor panel for a detailed technical and operational skill match assessment.
+                            Paste a role brief, founder mandate, operating challenge, or investment thesis to assess where Neeraj's execution profile creates leverage.
                           </p>
                         </motion.div>
                       )}
