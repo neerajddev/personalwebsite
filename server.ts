@@ -125,6 +125,22 @@ function cleanAiText(text: string): string {
 
 // Fallback Chat Parser Engine in case Gemini API is rate-limited or key has quota limit
 function runFallbackChatEngine(messages: { role: string; content: string }[]): string {
+    // AVAILABILITY / JOINING / JOB STATUS
+    if (
+      text.includes("immediate joiner") ||
+      text.includes("joiner") ||
+      text.includes("notice period") ||
+      text.includes("available") ||
+      text.includes("availability") ||
+      text.includes("looking for job") ||
+      text.includes("open to job") ||
+      text.includes("hiring") ||
+      text.includes("hire him") ||
+      text.includes("can he join") ||
+      text.includes("when can he join")
+    ) {
+      return "Neeraj currently leads Operations and Program Delivery at De'Artisa LLP while independently building AI-native SaaS systems. He is open to strategic conversations where his operator-builder profile creates clear leverage, but exact availability, joining timeline, engagement model, and compensation should be discussed directly with him. Would you like to open a direct channel with Neeraj?";
+    }
   if (!messages || messages.length === 0) {
     return "Hello. I am Neeraj's AI Representative. What would you like to know about his operations background or shipped products?";
   }
@@ -218,7 +234,7 @@ function runFallbackChatEngine(messages: { role: string; content: string }[]): s
   }
 
   if (text.includes("how is") || text.includes("how are") || text.includes("current status") || text.includes("doing now") || text.includes("what is he doing")) {
-    return "Neeraj is doing exceptionally well! He is in Bangalore running Operations and Program Delivery at De'Artisa LLP, while continuous-building AI-native software projects to automate legacy operational bottlenecks. He's always open for strategic 0 to 1 roles that need an autonomous builder approach.";
+    return "Neeraj currently leads Operations and Program Delivery at De'Artisa LLP in Bangalore, while building AI-native software systems that automate operational bottlenecks. His current work sits at the intersection of B2B service operations, SaaS execution, and systems design.";
   }
 
   if (text.includes("civil") || text.includes("site engineer") || text.includes("site") || text.includes("infrastructure") || text.includes("construction") || text.includes("ulccs") || text.includes("government")) {
@@ -333,7 +349,14 @@ app.post("/api/chat", async (req, res) => {
     - Rating/Scoring: "I don't rate on a standard 1-10 scale. If you want someone to maintain a legacy system, he's a 5. If you need a 0 to 1 builder to architect a new operation, he's a 10. Would you like to chat with him directly?"
     - IF THE USER SAYS YES TO TALKING (e.g., "Yes", "Sure", "Okay", "I do"): Respond with EXACTLY this phrase and nothing else: "Perfect. Click here to open a direct line with Neeraj: [TRIGGER_LETS_TALK]"
 
-    3. UNKNOWN QUESTIONS:
+    3. AVAILABILITY / JOINING / JOB STATUS:
+    - If a visitor asks whether Neeraj is available, actively looking, an immediate joiner, serving notice period, open to jobs, or available for hiring, do not say he is desperate or broadly job-seeking.
+    - Say that Neeraj currently leads Operations and Program Delivery at De'Artisa LLP while independently building AI-native SaaS systems.
+    - Say he is open to strategic conversations where his operator-builder profile creates clear leverage.
+    - Say exact availability, joining timeline, engagement model, compensation, or employment structure should be discussed directly with him.
+    - If appropriate, end with: "Would you like to open a direct channel with Neeraj?"
+
+    4. UNKNOWN QUESTIONS:
     - If asked a question you truly don't know the answer to, NEVER use a generic fallback with an email address. Say: "That goes slightly beyond my current context. Would you like to open a direct channel with Neeraj to ask him?"`;
 
         const response = await ai.models.generateContent({
