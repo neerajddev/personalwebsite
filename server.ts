@@ -544,7 +544,8 @@ function verifyAdminAuth(req: express.Request): boolean {
   if (!authHeader) return false;
   
   const token = authHeader.replace("Bearer ", "").trim();
-  const expectedPassword = process.env.ADMIN_PASSWORD || "neerajdev2026";
+  const expectedPassword = process.env.ADMIN_PASSWORD;
+if (!expectedPassword) return false;
   return token === expectedPassword;
 }
 
@@ -655,7 +656,10 @@ app.post("/api/contacts", async (req, res) => {
 // 2. Admin Login Verification
 app.post("/api/admin/login", (req, res) => {
   const { password } = req.body;
-  const expectedPassword = process.env.ADMIN_PASSWORD || "neerajdev2026";
+  const expectedPassword = process.env.ADMIN_PASSWORD;
+if (!expectedPassword) {
+  return res.status(500).json({ error: "Admin password is not configured." });
+}
   
   if (password === expectedPassword) {
     return res.json({ success: true, token: expectedPassword });

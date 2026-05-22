@@ -2366,10 +2366,10 @@ export default function App() {
 
                           <div className="space-y-2">
                             <h3 className="font-extrabold text-2xl tracking-tight text-white uppercase font-sans">
-                              Got it!
+                              Awesome, received!
                             </h3>
                             <p className="text-sm font-sans text-slate-300 max-w-sm mx-auto leading-relaxed font-light">
-                              If there's a fit, Neeraj will reach out.
+                              Thanks for reaching out—looking forward to connecting soon.
                             </p>
                           </div>
 
