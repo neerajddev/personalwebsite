@@ -336,8 +336,8 @@ app.post("/api/chat", async (req, res) => {
     3. UNKNOWN QUESTIONS:
     - If asked a question you truly don't know the answer to, NEVER use a generic fallback with an email address. Say: "That goes slightly beyond my current context. Would you like to open a direct channel with Neeraj to ask him?"`;
 
-      const response = await ai.models.generateContent({
-  model: "gemini-2.5-flash-lite",
+        const response = await ai.models.generateContent({
+      model: "gemini-3.1-flash-lite",
         contents: { parts },
         config: {
           systemInstruction,
@@ -422,8 +422,8 @@ SUGGESTED ANGLE:
 [One concise paragraph on how Neeraj should position himself, highlighting his unique hybrid operational management + AI builder background to offset any potential gaps]
 `;
 
-      const response = await ai.models.generateContent({
-  model: "gemini-2.5-flash-lite",
+        const response = await ai.models.generateContent({
+      model: "gemini-3.5-flash",
         contents: prompt,
         config: {
           systemInstruction,
