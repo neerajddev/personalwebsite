@@ -125,22 +125,7 @@ function cleanAiText(text: string): string {
 
 // Fallback Chat Parser Engine in case Gemini API is rate-limited or key has quota limit
 function runFallbackChatEngine(messages: { role: string; content: string }[]): string {
-    // AVAILABILITY / JOINING / JOB STATUS
-    if (
-      text.includes("immediate joiner") ||
-      text.includes("joiner") ||
-      text.includes("notice period") ||
-      text.includes("available") ||
-      text.includes("availability") ||
-      text.includes("looking for job") ||
-      text.includes("open to job") ||
-      text.includes("hiring") ||
-      text.includes("hire him") ||
-      text.includes("can he join") ||
-      text.includes("when can he join")
-    ) {
-      return "Neeraj currently leads Operations and Program Delivery at De'Artisa LLP while independently building AI-native SaaS systems. He is open to strategic conversations where his operator-builder profile creates clear leverage, but exact availability, joining timeline, engagement model, and compensation should be discussed directly with him. Would you like to open a direct channel with Neeraj?";
-    }
+
   if (!messages || messages.length === 0) {
     return "Hello. I am Neeraj's AI Representative. What would you like to know about his operations background or shipped products?";
   }
@@ -148,6 +133,23 @@ function runFallbackChatEngine(messages: { role: string; content: string }[]): s
   const lastMsg = messages[messages.length - 1];
   const lastContent = lastMsg?.content || "";
   const text = lastContent.toLowerCase().trim();
+
+  // AVAILABILITY / JOINING / JOB STATUS
+  if (
+    text.includes("immediate joiner") ||
+    text.includes("joiner") ||
+    text.includes("notice period") ||
+    text.includes("available") ||
+    text.includes("availability") ||
+    text.includes("looking for job") ||
+    text.includes("open to job") ||
+    text.includes("hiring") ||
+    text.includes("hire him") ||
+    text.includes("can he join") ||
+    text.includes("when can he join")
+  ) {
+    return "Neeraj currently leads Operations and Program Delivery at De'Artisa LLP while independently building AI-native SaaS systems. He is open to strategic conversations where his operator-builder profile creates clear leverage, but exact availability, joining timeline, engagement model, and compensation should be discussed directly with him. Would you like to open a direct channel with Neeraj?";
+  }
 
   // 0. Conversational Introductions & Basic Greetings Fallback (Prevents matching other email/contact text rules)
   const basicGreetings = ["hi", "hello", "hey", "greetings", "how are you", "good morning", "good afternoon", "good evening", "how's it going", "howdy", "whats up", "what's up", "wassup", "sup"];
