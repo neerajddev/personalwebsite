@@ -1,5 +1,6 @@
 import { useState, useEffect, FormEvent, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Analytics } from "@vercel/analytics/react";
 import { 
   Plus,
   Mail, 
@@ -2940,6 +2941,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      <Analytics />
     </div>
   );
 }
