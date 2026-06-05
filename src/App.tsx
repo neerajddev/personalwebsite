@@ -966,7 +966,35 @@ export default function App() {
           </div>
         </div>
       </header>
+{currentPath === "/" && (
+  <div className="fixed top-[112px] sm:top-[120px] left-0 right-0 z-[900] px-4 sm:px-6 lg:px-12 pointer-events-none">
+    <div className="max-w-7xl mx-auto flex justify-center relative">
+      <div className="absolute inset-x-8 -inset-y-3 bg-black/30 blur-2xl rounded-full" />
+      <motion.button
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
+        onClick={() => setIsChatModalOpen(true)}
+        className="relative pointer-events-auto w-full max-w-3xl bg-white/[0.08] backdrop-blur-3xl saturate-150 border border-white/15 hover:bg-white/[0.11] hover:border-white/25 shadow-2xl shadow-black/30 rounded-2xl sm:rounded-3xl px-4 py-3 sm:px-5 sm:py-3.5 flex items-center justify-between gap-4 cursor-pointer transition-all duration-300 group ring-1 ring-white/[0.08]"
+      >
+        <div className="flex items-center gap-3.5 flex-1 min-w-0">
+          <Search className="w-4 h-4 sm:w-5 sm:h-5 text-white/75 group-hover:text-white transition-colors shrink-0" />
+          <span className="text-white/75 font-sans font-light text-xs sm:text-sm md:text-base truncate select-none">
+            Ask Neeraj's AI Agent anything...
+          </span>
+        </div>
 
+        <div className="flex items-center gap-2 shrink-0">
+          <kbd className="hidden sm:inline-flex text-[8px] font-mono font-bold text-white/55 bg-white/5 border border-white/10 px-2.5 py-1 rounded-md uppercase tracking-wider select-none">
+            ASK CONSOLE
+          </kbd>
+          <div className="w-5 h-5 flex items-center justify-center rounded-full bg-white/10 border border-white/10 group-hover:bg-white/15 transition-all">
+            <ChevronRight className="w-3 h-3 text-white/75 transition-colors" />
+          </div>
+        </div>
+      </motion.button>
+    </div>
+  </div>
+)}
       {/* --- RESPONSIVE MOBILE & TABLET FLYOUT NAVIGATION DRAWER --- */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -1078,7 +1106,7 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
         {/* 1. HERO SECTION */}
-        <section id="hero" className="pt-24 sm:pt-28 md:pt-36 py-12 md:py-28 flex flex-col justify-center min-h-[calc(100vh-80px)] scroll-mt-20">
+        <section id="hero" className="pt-40 sm:pt-44 md:pt-52 pb-12 md:pb-28 flex flex-col justify-center min-h-[calc(100vh-80px)] scroll-mt-20">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center w-full">
             {/* Left Text Block */}
@@ -1165,31 +1193,6 @@ export default function App() {
               </motion.div>
             </div>
           </div>
-
-          {/* Symmetrical Inline Liquid Glass Trigger Bar */}
-          <div className="mt-12 sm:mt-16 flex justify-center w-full">
-            <motion.div
-              whileTap={{ scale: 0.99 }}
-              onClick={() => setIsChatModalOpen(true)}
-              className="w-full max-w-3xl bg-slate-900/30 backdrop-blur-3xl saturate-150 border border-transparent border-t-white/10 border-l-white/10 hover:bg-slate-800/25 hover:border-t-white/20 hover:border-l-white/20 shadow-2xl shadow-black/40 rounded-2xl sm:rounded-3xl p-4 sm:p-5 flex items-center justify-between gap-4 cursor-pointer transition-all duration-300 group"
-            >
-              <div className="flex items-center gap-3.5 flex-1 min-w-0">
-                <Search className="w-5 h-5 text-slate-300 group-hover:text-[#3b82f6] transition-colors shrink-0" />
-                <span className="text-[#f9fafb]/60 font-sans font-light text-sm sm:text-base md:text-lg truncate select-none">
-                  ✦ Ask my AI Agent about my 9+ years of operations experience...
-                </span>
-              </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <kbd className="hidden sm:inline-flex text-[9px] font-mono font-bold text-slate-400 bg-white/5 border border-white/5 px-2.5 py-1 rounded-md uppercase tracking-wider select-none">
-                  ASK CONSOLE
-                </kbd>
-                <div className="w-5 h-5 flex items-center justify-center rounded-full bg-slate-800 border border-white/10 group-hover:bg-[#3b82f6]/20 group-hover:border-[#3b82f6]/40 transition-all">
-                  <ChevronRight className="w-3 h-3 text-slate-300 group-hover:text-white transition-colors" />
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
         </section>
 
         {/* 2. ABOUT ME SECTION */}
@@ -1329,7 +1332,7 @@ export default function App() {
           <div className="mb-16">
             <span className="font-mono text-xs text-[#3b82f6] tracking-widest block mb-3 uppercase font-bold">03 / FUNCTIONAL PRODUCTS</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase">
-              Projects Shipped
+              Projects & Builds
             </h2>
           </div>
 
@@ -1530,13 +1533,27 @@ export default function App() {
                     Personal Productivity App
                   </p>
                 </div>
-                
-                <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
-                  A production-grade PWA built for internal metrics tracking, task management, and complex financial calculations.
-                </p>
-                
+
+                <div className="space-y-4">
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    A vanilla JavaScript productivity and finance dashboard built as a responsive, installable PWA with no frontend framework.
+                  </p>
+
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    The app includes daily task and habit tracking, priority-based task creation, repeat scheduling, done/partial/skipped/exempt states, task filtering, day sealing, missed-day recovery, and localStorage persistence so every day maintains its own task record.
+                  </p>
+
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    It also includes a multi-view progress dashboard for day, week, month, and year analytics, plus a finance module for bank balances, credit cards, EMIs, loans, expenses, income, money owed, net worth, cash flow, payoff tracking, and financial health insights.
+                  </p>
+
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    Built with localStorage-first persistence, optional Supabase sync, custom date handling, PIN lock security, service-worker support, and a mobile-friendly bottom navigation experience.
+                  </p>
+                </div>
+
                 <div className="flex flex-wrap gap-2">
-                  {["Vanilla JS", "Supabase", "PWA", "Service Worker"].map((tag) => (
+                  {["Vanilla JS", "LocalStorage", "PWA", "Service Worker", "Supabase Sync", "Finance Dashboard", "PIN Security"].map((tag) => (
                     <span key={tag} className="font-mono text-[10px] tracking-wider uppercase bg-slate-800 text-[#f9fafb]/70 px-3 py-1 rounded">
                       {tag}
                     </span>
@@ -1562,6 +1579,7 @@ export default function App() {
                   </a>
                 </div>
               </div>
+              
 
               {/* Right Mock Preview Area */}
               <div className="lg:col-span-6">
@@ -1588,9 +1606,171 @@ export default function App() {
                   </span>
                 </div>
               </div>
-
             </div>
 
+            {/* Project 4: LinkAI Post */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center group pb-16 last:border-0 last:pb-0">
+              <div className="lg:col-span-6 flex flex-col gap-6" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                <div>
+                  <div className="flex flex-wrap items-center gap-3 mb-2">
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-[#3b82f6] transition-colors">
+                      Typomatic AI
+                    </h3>
+                    <span className="font-mono text-[9px] tracking-wider uppercase bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded">
+                      In Development
+                    </span>
+                  </div>
+                  <p className="text-[#3b82f6] font-mono text-xs tracking-widest uppercase font-bold">
+                    AI LinkedIn Content Architect for B2B Professionals
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    An Android-first AI content planning app for founders and B2B professionals. LinkAI Post uses Gemini AI to turn raw industry ideas into structured LinkedIn post campaigns, helping users move from blank page to strategic content pipeline.
+                  </p>
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    The app includes weekly campaign planning, brand pillars, trend-aware drafting, LinkedIn-style mobile previews, and a custom engagement heatmap that suggests stronger posting windows based on simulated audience activity.
+                  </p>
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    Built with Kotlin and Jetpack Compose, using Room DB for offline-first draft storage and Retrofit with Coroutines for API orchestration across Gemini-powered drafting and planned LinkedIn workflow integrations.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {['Kotlin', 'Jetpack Compose', 'Gemini AI', 'Room DB', 'Retrofit', 'Coroutines', 'Android'].map((tag) => (
+                    <span key={tag} className="font-mono text-[10px] tracking-wider uppercase bg-slate-800 text-[#f9fafb]/70 px-3 py-1 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="font-mono text-[10px] tracking-wider uppercase text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-2 rounded w-fit">
+                  Status: Active Android build
+                </div>
+              </div>
+
+              <div className="lg:col-span-6">
+                <div className="w-full aspect-[16/10] bg-[#1f2937] border border-slate-700 rounded flex flex-col items-center justify-center p-6 text-center hover:border-[#3b82f6]/40 transition-colors duration-300 relative overflow-hidden group/img">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#3b82f6]/10 via-transparent to-amber-500/5 pointer-events-none" />
+                  <div className="absolute top-3 left-3 font-mono text-[9px] text-[#f9fafb]/25 z-0">ANDROID_BUILD_PREVIEW</div>
+
+                  <div className="w-[210px] max-w-full rounded-[28px] border border-slate-700 bg-[#111827] p-3 shadow-2xl shadow-black/40 relative z-10">
+                    <div className="h-2 w-16 rounded-full bg-slate-700 mx-auto mb-4" />
+                    <div className="space-y-3 text-left">
+                      <div className="flex items-center gap-2">
+                        <Linkedin className="w-5 h-5 text-[#3b82f6]" />
+                        <div>
+                          <div className="h-2 w-24 bg-slate-600 rounded mb-1" />
+                          <div className="h-1.5 w-16 bg-slate-700 rounded" />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="h-2 w-full bg-slate-700 rounded" />
+                        <div className="h-2 w-11/12 bg-slate-700 rounded" />
+                        <div className="h-2 w-9/12 bg-slate-700 rounded" />
+                      </div>
+                      <div className="grid grid-cols-5 gap-1 pt-2">
+                        {[35, 55, 80, 45, 65].map((height, index) => (
+                          <div key={index} className="h-16 bg-slate-800 rounded flex items-end overflow-hidden">
+                            <div className="w-full bg-[#3b82f6]" style={{ height: `${height}%` }} />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <img
+                    src="typomatic-ai.png"
+                    alt="Typomatic AI Android App"
+                    referrerPolicy="no-referrer"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-500 group-hover/img:scale-105"
+                    onError={(e) => { e.currentTarget.style.display = "none"; }}
+                  />
+
+                  <span className="font-mono text-[10px] text-[#f9fafb]/80 font-bold tracking-wide uppercase z-10 mt-5">
+                    LinkedIn Strategy Workspace
+                  </span>
+                  <span className="text-[10px] text-[#f9fafb]/45 mt-1 z-10">
+                    AI Drafting • Heatmap Timing • Mobile Preview
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Project: Warranty Vault & Concierge */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center group pb-16 last:border-0 last:pb-0">
+              <div className="lg:col-span-6 flex flex-col gap-6" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                <div>
+                  <div className="flex flex-wrap items-center gap-3 mb-2">
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-[#3b82f6] transition-colors">
+                      Warranty Vault & Concierge
+                    </h3>
+                    <span className="font-mono text-[9px] tracking-wider uppercase bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded">
+                      In Development
+                    </span>
+                  </div>
+
+                  <p className="text-[#3b82f6] font-mono text-xs tracking-widest uppercase font-bold">
+                    Offline-First Warranty Tracker & AI Complaint Assistant
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    Warranty Vault & Concierge is an offline-first personal utility app for storing, tracking, and escalating product warranties securely from a local device-first vault.
+                  </p>
+
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    The app uses on-device OCR through Google ML Kit to extract receipt and invoice data, then applies Gemini-assisted parsing to structure warranty metadata and draft professional support escalation emails.
+                  </p>
+
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    Architecturally, it follows a feature-first Flutter structure with Riverpod state management, secure local authentication, modular OCR and AI services, local warranty records, support ticket tracking, and adaptive routing for web and native experiences.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {["Flutter", "Dart", "Riverpod", "ML Kit OCR", "Gemini API", "Secure Storage", "Offline-First"].map((tag) => (
+                    <span key={tag} className="font-mono text-[10px] tracking-wider uppercase bg-slate-800 text-[#f9fafb]/70 px-3 py-1 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="lg:col-span-6">
+                <div className="w-full aspect-[16/10] bg-[#374151] border border-slate-700 rounded flex flex-col items-center justify-center p-6 text-center hover:border-[#3b82f6]/40 transition-colors duration-300 relative overflow-hidden group/img">
+                  <img 
+                    src="warranty-vault.png" 
+                    alt="Warranty Vault & Concierge App"
+                    referrerPolicy="no-referrer"
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }} 
+                    className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-500 group-hover/img:scale-105"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
+                  />
+
+                  <div className="absolute top-3 left-3 font-mono text-[9px] text-[#f9fafb]/25 z-0">
+                    VAULT_APP_PREVIEW
+                  </div>
+
+                  <div className="w-12 h-12 rounded bg-[#111827]/40 border border-slate-700 flex items-center justify-center text-[#3b82f6] mb-3 group-hover/img:scale-105 transition-transform duration-300 z-0">
+                    <Lock className="w-5 h-5" />
+                  </div>
+
+                  <span className="font-mono text-[10px] text-[#f9fafb]/80 font-bold tracking-wide uppercase z-0">
+                    [ Image Placeholder: Warranty Vault App Screenshot ]
+                  </span>
+
+                  <span className="text-[10px] text-[#f9fafb]/45 mt-1 z-0">
+                    Secure warranty vault, OCR capture, and AI complaint concierge
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

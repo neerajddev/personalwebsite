@@ -205,6 +205,32 @@ function runFallbackChatEngine(messages: { role: string; content: string }[]): s
   const lastContent = lastMsg?.content || "";
   const text = lastContent.toLowerCase().trim();
 
+  const operationsKeywords = [
+    "operations",
+    "ops",
+    "oeprations",
+    "opertions",
+    "scale",
+    "first",
+    "program",
+    "project",
+    "delivery",
+    "head",
+    "project manager",
+    "program manager",
+    "head of operations",
+  ];
+
+  const experienceKeywords = [
+    "experience",
+    "experince",
+    "expereince",
+    "years",
+    "work",
+    "past",
+    "background",
+  ];
+
   // AVAILABILITY / JOINING / JOB STATUS
   if (
     text.includes("immediate joiner") ||
@@ -222,10 +248,27 @@ function runFallbackChatEngine(messages: { role: string; content: string }[]): s
     return "Neeraj currently leads Operations and Program Delivery at De'Artisa LLP while independently building AI-native SaaS systems. He is open to strategic conversations where his operator-builder profile creates clear leverage, but exact availability, joining timeline, engagement model, and compensation should be discussed directly with him. Would you like to open a direct channel with Neeraj?";
   }
 
+  // 0a. Current status / status queries should be handled before generic greetings
+  if (
+    text.includes("how is") ||
+    text.includes("how are") ||
+    text.includes("current status") ||
+    text.includes("doing now") ||
+    text.includes("what is he doing")
+  ) {
+    return "Neeraj currently leads Operations and Program Delivery at De'Artisa LLP in Bangalore, while building AI-native software systems that automate operational bottlenecks. His current work sits at the intersection of B2B service operations, SaaS execution, and systems design.";
+  }
+
   // 0. Conversational Introductions & Basic Greetings Fallback (Prevents matching other email/contact text rules)
   const basicGreetings = ["hi", "hello", "hey", "greetings", "how are you", "good morning", "good afternoon", "good evening", "how's it going", "howdy", "whats up", "what's up", "wassup", "sup"];
   const isGreetingMatch = basicGreetings.some(g => {
-    return text === g || text.startsWith(g + " ") || text.startsWith(g + ",") || text.startsWith(g + "!");
+    return (
+      text === g ||
+      text === `${g}!` ||
+      text === `${g}.` ||
+      text === `${g},` ||
+      text === `${g}?`
+    );
   });
 
   if (isGreetingMatch) {
@@ -261,7 +304,10 @@ function runFallbackChatEngine(messages: { role: string; content: string }[]): s
   }
 
   // 2. CV / Resume Dossier Triggers
-  if (text.includes("operations") || text.includes("ops") || text.includes("scale") || text.includes("first") || text.includes("program") || text.includes("project") || text.includes("delivery") || text.includes("head") || text.includes("project manager") || text.includes("program manager") || text.includes("head of operations")) {
+  if (
+    operationsKeywords.some(keyword => text.includes(keyword)) ||
+    text.includes("first")
+  ) {
     const hasCvContext = messages.some(m => m.content.includes("tailored dossiers") || m.content.includes("executive dossiers") || m.content.includes("dossier"));
     if (hasCvContext || text.includes("cv") || text.includes("resume") || text.includes("dossier")) {
       return "Here is the Operations and Program Delivery dossier: [TRIGGER_CV_OPS]";
@@ -330,12 +376,23 @@ function runFallbackChatEngine(messages: { role: string; content: string }[]): s
     return "DeArtisa Hub is an escrow-protected freelancer marketplace Neeraj built for elite 3D architectural visualizers. It has a custom AI scoping engine that translates sketches into crisp briefs, accepting only the top 10 percent of talent.";
   }
 
-  if (text.includes("operations") || text.includes("ops") || text.includes("how he works") || text.includes("challenge") || text.includes("philosophy")) {
+  if (operationsKeywords.some(keyword => text.includes(keyword)) || text.includes("how he works") || text.includes("challenge") || text.includes("philosophy")) {
     return "Neeraj operates on the philosophy of systems over brute force. He maps workflows, structures automated rules, and builds custom SaaS tools independently to scale operations without developer overhead.";
   }
 
-  if (text.includes("experience") || text.includes("years") || text.includes("work") || text.includes("past") || text.includes("background")) {
+  if (experienceKeywords.some(keyword => text.includes(keyword))) {
     return "Neeraj has deep expertise in scaling service operations, program management, and independent product building. He managed a 75 Crore infrastructure execution project and scaled B2B service operations to 150+ designer studios.";
+  }
+
+  if (
+    text.includes("hobby") ||
+    text.includes("hobbies") ||
+    text.includes("interest") ||
+    text.includes("interests") ||
+    text.includes("personal interest") ||
+    text.includes("personal interests")
+  ) {
+    return "I don't have verified detail on Neeraj's hobbies in my current context. I can speak confidently about his operations work, SaaS builds, and AI-native working style.";
   }
 
   // 7. Intelligent Generic Brain AI Fallback response
