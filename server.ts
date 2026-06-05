@@ -112,9 +112,33 @@ Live URL: https://tracker-lifeos.vercel.app
 
 Source Code: https://github.com/designandcart-afk/Tracker
 
-Overview: A lightweight, offline-first metric-tracking Progressive Web App (PWA) facilitating daily productivity logs, personal expense trackers, task execution cards, and asset/net-worth calculation calculators.
+Overview: A vanilla JavaScript productivity and finance dashboard built as a responsive, installable PWA with no frontend framework. It supports daily task and habit tracking, priority-based task creation, repeat scheduling, done/partial/skipped/exempt states, task filtering, day sealing, missed-day recovery, and localStorage persistence so every day maintains its own task record.
 
-Core Stack: Vanilla JavaScript, Service Workers, Supabase.
+It also includes a multi-view progress dashboard for day, week, month, and year analytics, plus a finance module for bank balances, credit cards, EMIs, loans, expenses, income, money owed, net worth, cash flow, payoff tracking, and financial health insights.
+
+Built with localStorage-first persistence, optional Supabase sync, custom date handling, PIN lock security, service-worker support, and a mobile-friendly bottom navigation experience.
+
+Core Stack: Vanilla JavaScript, Service Workers, localStorage-first persistence, Supabase sync, PIN security, and installable PWA support.
+
+Typomatic AI
+
+Status: In-development
+
+Type: Android app for AI LinkedIn content strategy
+
+Overview: Typomatic AI is an in-development Android app and AI LinkedIn content architect for B2B professionals and founders. It helps users generate LinkedIn content from trends, brand pillars, and campaign intent. Features include a velocity planner, market intelligence inputs, LinkedIn-style live preview, engagement heatmap, secure workspace, and offline draft storage.
+
+Core Tech Stack: Kotlin, Jetpack Compose, Google Gemini AI, Room DB, Retrofit, Coroutines, Android.
+
+Warranty Vault & Concierge
+
+Status: In-development
+
+Type: Offline-first warranty tracker and AI complaint assistant
+
+Overview: Warranty Vault & Concierge is an offline-first app for storing product warranties, scanning receipts, extracting metadata, tracking warranty status, and drafting support escalation emails. It includes a secure PIN-based vault, OCR ingestion, AI-assisted metadata extraction, complaint concierge, support ticket tracking, adaptive web/native routing, and local-first privacy.
+
+Core Tech Stack: Flutter, Dart, Riverpod, Google ML Kit OCR, Gemini API, flutter_secure_storage, shared_preferences.
 
 WORK CHRONOLOGY & ACHIEVEMENTS:
 
@@ -360,8 +384,62 @@ function runFallbackChatEngine(messages: { role: string; content: string }[]): s
     return "Neeraj spent 4 years managing large scale infrastructure projects as a Site Engineer and Acting Project Lead. At ULCCS Ltd, he supervised end-to-end execution of a ₹75 Crore, 12-storey facility, coordinating over 100 on-site workers and 7 subcontractor fronts. He mastered P&L, resource leveling, and scheduling in highly physical environments before pivoting to tech.";
   }
 
-  if (text.includes("scale") || text.includes("150") || text.includes("livspace") || text.includes("revenue") || text.includes("3.5l") || text.includes("growth") || text.includes("projects") || text.includes("thousand") || text.includes("1,000")) {
+  if (text.includes("scale") || text.includes("150") || text.includes("livspace") || text.includes("revenue") || text.includes("3.5l") || text.includes("growth") || text.includes("thousand") || text.includes("1,000")) {
     return "At De'Artisa, Neeraj built a cashflowing B2B visualization service delivery pipeline from scratch. He scaled it to support 150+ premium design offices (including industry leaders like Livspace) and managed the delivery of 1,000+ completed premium renders. This ran with zero venture funding, hitting ₹3.5L monthly revenue at standard peak times.";
+  }
+
+  if (
+    text.includes("typomatic") ||
+    text.includes("linkai") ||
+    text.includes("linkedin content") ||
+    text.includes("linkedin-style") ||
+    text.includes("velocity planner") ||
+    text.includes("engagement heatmap") ||
+    (text.includes("android") && text.includes("app"))
+  ) {
+    return "Typomatic AI is an in-development Android app for B2B professionals and founders. It is an AI LinkedIn content architect built with Kotlin, Jetpack Compose, Gemini AI, Room DB, Retrofit, Coroutines, and Android. It helps users generate LinkedIn content from trends, brand pillars, and campaign intent, with a velocity planner, market intelligence inputs, LinkedIn-style live preview, engagement heatmap, secure workspace, and offline draft storage.";
+  }
+
+  if (
+    text.includes("warranty vault") ||
+    text.includes("concierge") ||
+    text.includes("warranty tracker") ||
+    text.includes("complaint assistant") ||
+    text.includes("receipt") ||
+    text.includes("warranty status") ||
+    text.includes("support escalation") ||
+    text.includes("flutter") ||
+    text.includes("riverpod")
+  ) {
+    return "Warranty Vault & Concierge is an in-development offline-first warranty tracker and AI complaint assistant built with Flutter, Dart, Riverpod, Google ML Kit OCR, Gemini API, flutter_secure_storage, and shared_preferences. It helps users store product warranties, scan receipts, extract metadata, track warranty status, and draft support escalation emails using a secure PIN-based vault, OCR ingestion, AI-assisted metadata extraction, complaint concierge, support ticket tracking, and adaptive web/native routing.";
+  }
+
+  if (
+    text.includes("growth tracker") ||
+    text.includes("personal growth tracker") ||
+    text.includes("productivity and finance") ||
+    text.includes("finance dashboard") ||
+    text.includes("net worth") ||
+    text.includes("cash flow") ||
+    text.includes("localstorage") ||
+    text.includes("installable pwa") ||
+    text.includes("service worker") ||
+    text.includes("pwa")
+  ) {
+    return "Growth Tracker is a vanilla JavaScript productivity and finance PWA with localStorage-first persistence, optional Supabase sync, PIN lock security, service-worker support, and an installable UX. It includes daily task and habit tracking with done/partial/skipped/exempt states, day sealing, missed-day recovery, progress analytics, and a finance dashboard for bank balances, credit cards, EMIs, loans, expenses, income, net worth, cash flow, payoff tracking, and financial health insights.";
+  }
+
+  if (
+    text.includes("project") ||
+    text.includes("projects") ||
+    text.includes("app") ||
+    text.includes("apps") ||
+    text.includes("software") ||
+    text.includes("technical builds") ||
+    text.includes("portfolio") ||
+    text.includes("software builds")
+  ) {
+    return "Neeraj's current product portfolio includes Design&Cart, Deartisa Hub, Growth Tracker, Typomatic AI, and Warranty Vault & Concierge. Design&Cart is a 0-to-1 SaaS product marketplace for interior designers, Deartisa Hub is a curated freelancer platform for premium 3D visualizers, Growth Tracker is a vanilla JavaScript finance and productivity PWA, Typomatic AI is an Android-first Gemini-powered LinkedIn content architect, and Warranty Vault & Concierge is an offline-first warranty tracker with AI complaint concierge capabilities.";
   }
 
   if (text.includes("engineer") || text.includes("software") || text.includes("saas") || text.includes("code") || text.includes("coding") || text.includes("build") || text.includes("supabase") || text.includes("vercel") || text.includes("tech stack")) {
@@ -439,9 +517,14 @@ app.post("/api/chat", async (req, res) => {
 
       // Map conversation messages to format expected by GenerateContentParameters
       // Convert previous roles from client to parts structure, injected with portfolio context
+      const adminContext = typeof req.body.adminContext === "string" ? req.body.adminContext.trim() : "";
       const parts = [
-        { text: `Here is the comprehensive portfolio context of Neeraj D Dev to base your responses on:\n${NEERAJ_PORTFOLIO_CONTEXT}\n\n` }
+        { text: `Here is the comprehensive public portfolio context of Neeraj D Dev to base your responses on:\n${NEERAJ_PORTFOLIO_CONTEXT}\n\n` }
       ];
+
+      if (adminContext) {
+        parts.push({ text: `Here is additional private/admin context to augment the public portfolio knowledge:\n${adminContext}\n\n` });
+      }
 
       // Append standard message history
       messages.forEach((msg: { role: string; content: string }) => {
@@ -459,6 +542,7 @@ app.post("/api/chat", async (req, res) => {
     - Use short paragraphs and punchy sentences. 
     - Never say "Based on his 9+ years..." Just state the facts confidently.
     - Rule of Truth: If the visible website content conflicts with this background knowledge, the website content is the absolute truth.
+    - Treat the public portfolio knowledge as the authoritative base. Any private/admin context is supplementary and may add detail, but it must not replace or override the public website knowledge.
     - NO MARKDOWN OR SYMBOLS: Output plain, clean text only. Do not use asterisks (* or **), bold markers, headings with **, or bullet symbols other than simple hyphens. Do not use Markdown formatting.
 
     OPERATIONAL PHILOSOPHY:
