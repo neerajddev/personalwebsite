@@ -1616,38 +1616,61 @@ export default function App() {
                     <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-[#3b82f6] transition-colors">
                       Typomatic AI
                     </h3>
-                    <span className="font-mono text-[9px] tracking-wider uppercase bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded">
-                      In Development
-                    </span>
                   </div>
                   <p className="text-[#3b82f6] font-mono text-xs tracking-widest uppercase font-bold">
-                    AI LinkedIn Content Architect for B2B Professionals
+                    Cross-Platform LinkedIn Automation App
                   </p>
                 </div>
 
                 <div className="space-y-4">
                   <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
-                    An Android-first AI content planning app for founders and B2B professionals. LinkAI Post uses Gemini AI to turn raw industry ideas into structured LinkedIn post campaigns, helping users move from blank page to strategic content pipeline.
+                    Typomatic AI is a cross-platform mobile app that helps founders and B2B professionals generate LinkedIn posts, plan multi-post campaigns, schedule content, and auto-publish through cloud sync even when the phone is offline.
                   </p>
+
                   <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
-                    The app includes weekly campaign planning, brand pillars, trend-aware drafting, LinkedIn-style mobile previews, and a custom engagement heatmap that suggests stronger posting windows based on simulated audience activity.
+                    The app integrates Google Gemini for topic, article, sector, and context-based post generation, with length controls, draft editing, LinkedIn-safe sanitization, and campaign generation for up to 30 posts in one run.
                   </p>
+
                   <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
-                    Built with Kotlin and Jetpack Compose, using Room DB for offline-first draft storage and Retrofit with Coroutines for API orchestration across Gemini-powered drafting and planned LinkedIn workflow integrations.
+                    It includes sector-based news discovery, on-demand AI summaries, a campaign planner, schedule previews, smart peak-time suggestions, an engagement heatmap, LinkedIn OAuth, direct publishing, and a Supabase-backed auto-publishing queue.
+                  </p>
+
+                  <p className="text-[#f9fafb]/80 font-light leading-[1.65] text-base sm:text-lg">
+                    Built with Kotlin Multiplatform and Compose Multiplatform using MVVM, Room KMP, Ktor, Supabase Auth/Postgres/RLS, Edge Functions, pg_cron, client-side encryption, PIN lock, and LinkedIn OAuth + Posts API.
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {['Kotlin', 'Jetpack Compose', 'Gemini AI', 'Room DB', 'Retrofit', 'Coroutines', 'Android'].map((tag) => (
+                  {["Kotlin Multiplatform", "Compose Multiplatform", "Gemini API", "Supabase", "Edge Functions", "pg_cron", "LinkedIn OAuth", "Room KMP", "Ktor"].map((tag) => (
                     <span key={tag} className="font-mono text-[10px] tracking-wider uppercase bg-slate-800 text-[#f9fafb]/70 px-3 py-1 rounded">
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="font-mono text-[10px] tracking-wider uppercase text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-2 rounded w-fit">
-                  Status: Active Android build
+                <div className="flex flex-wrap gap-x-6 gap-y-3 font-mono text-xs tracking-wider">
+                  <a 
+                    href="https://drive.google.com/file/d/1pjZwxwKXtxzRvz43LPXZGd65vtLw2sUk/view?usp=drive_link" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="inline-flex items-center text-[#3b82f6] hover:text-white font-semibold group/link"
+                  >
+                    ANDROID APK <ArrowUpRight className="w-3.5 h-3.5 ml-1 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </a>
+
+                  <a 
+                    href="https://github.com/inddev123-wq/TypoMaticAI" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="inline-flex items-center text-[#f9fafb]/60 hover:text-[#3b82f6] group/link"
+                  >
+                    GITHUB <ArrowUpRight className="w-3.5 h-3.5 ml-1 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                  </a>
                 </div>
+
+                <p className="text-[11px] text-[#f9fafb]/45 font-light leading-relaxed max-w-xl">
+                  Android APK available for testing. iOS build runs locally via Xcode; public iOS distribution is pending Apple Developer Program enrollment.
+                </p>
               </div>
 
               <div className="lg:col-span-6">
@@ -1690,10 +1713,10 @@ export default function App() {
                   />
 
                   <span className="font-mono text-[10px] text-[#f9fafb]/80 font-bold tracking-wide uppercase z-10 mt-5">
-                    LinkedIn Strategy Workspace
+                    [ Image Placeholder: Typomatic AI App Screenshot ]
                   </span>
                   <span className="text-[10px] text-[#f9fafb]/45 mt-1 z-10">
-                    AI Drafting • Heatmap Timing • Mobile Preview
+                    Cross-platform LinkedIn campaign planner and auto-publishing dashboard
                   </span>
                 </div>
               </div>
