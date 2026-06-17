@@ -1570,7 +1570,7 @@ export default function App() {
                     LIVE <ArrowUpRight className="w-3.5 h-3.5 ml-1 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                   </a>
                   <a 
-                    href="https://github.com/designandcart-afk/Tracker" 
+                    href="https://github.com/neerajddev/Tracker" 
                     target="_blank" 
                     rel="noreferrer"
                     className="inline-flex items-center text-[#f9fafb]/60 hover:text-[#3b82f6] group/link"

@@ -110,7 +110,7 @@ Personal Growth Tracker
 
 Live URL: https://tracker-lifeos.vercel.app
 
-Source Code: https://github.com/designandcart-afk/Tracker
+Source Code: https://github.com/neerajddev/Tracker
 
 Overview: A vanilla JavaScript productivity and finance dashboard built as a responsive, installable PWA with no frontend framework. It supports daily task and habit tracking, priority-based task creation, repeat scheduling, done/partial/skipped/exempt states, task filtering, day sealing, missed-day recovery, and localStorage persistence so every day maintains its own task record.
 
